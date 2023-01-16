@@ -1,29 +1,30 @@
-#include <vector>
+#include <iostream>
+#include <string>
 
-int add(int a, int b)
-{
-    return a + b;
-}
+struct MyStruct1 {};
+
+struct MyStruct2 {
+    int int_var;     // Zmienna nie posiada inicjalizacji
+public:
+    MyStruct2() {}
+};
+
+int n;          //  W tym przypadku n = 0
 
 int main() {
 
-    // Definicja typu int
-    int i = 5; // jawnie
-    auto i1 = 5; // s³owo kluczowe auto
+    std::cout << std::endl;
 
-    // Definiowanie referencji na typ int
-    int& b = i; // jawnie
-    auto& b1 = i; // s³owo kluczowe auto
+    int n; // Zmienna nie posiada inicjalizacji
+    std::string s; // Zmienna zostanie zainicjalizowana jako "", ze wzglêdu na konstruktor
+    MyStruct1 my_struct1; // Wywo³any zostanie konstruktor domyœlny
+    MyStruct2 my_struct2; // Wywo³any zostanie konstruktor domyœlny
 
-    // Definiowanie wskaŸnika na funkcjê
-    int (*add_ptr)(int, int) = add; // jawnie
-    auto add1 = add; // s³owo kluczowe auto
+    std::cout << "::n " << ::n << std::endl; // 0
+    std::cout << "n: " << n << std::endl; // Œmieci z pamiêci
+    std::cout << "s: " << s << std::endl; // Pusty string
+    std::cout << "MyStruct2().int_var: " << MyStruct2().int_var << std::endl; // 0
 
-    // Iterator wektora
-    std::vector<int> vec;
-    // jawnie:
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it) {}
-    // s³owo kluczowe auto
-    for (auto it1 = vec.begin(); it1 != vec.end(); ++it1) {}
+    std::cout << std::endl;
 
 }
