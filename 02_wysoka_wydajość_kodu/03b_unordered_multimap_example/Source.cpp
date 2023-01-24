@@ -10,50 +10,50 @@ int main() {
     long long mobile = 4916046123356;
 
     // Budowanie std::unordered_multimap i std::unordered_map
-    std::unordered_multimap<std::string, long long> multiMap{ {"grimm", home}, {"grimm", mobile}, {"jaud-grimm", home} };
-    std::unordered_map<std::string, int> uniqMap{ {"bin", 1}, {"root", 20}, {"nobody", 65834}, {"rainer", 1000} };
+    std::unordered_multimap<std::string, long long> multi_map{ {"grimm", home}, {"grimm", mobile}, {"jaud-grimm", home} };
+    std::unordered_map<std::string, int> unique_map{ {"bin", 1}, {"root", 20}, {"nobody", 65834}, {"rainer", 1000} };
 
-    // show the unordered maps
-    std::cout << "multiMap: ";
-    for (auto m : multiMap) std::cout << '{' << m.first << ", " << m.second << '}';
-
-    std::cout << std::endl;
-
-    std::cout << "uniqMap: ";
-    for (auto u : uniqMap) std::cout << '{' << u.first << ", " << u.second << '}';
-    std::cout << std::endl;
+    // Wyœwietlenie multi mapy
+    std::cout << "multi_map: ";
+    for (auto m : multi_map) std::cout << '{' << m.first << ", " << m.second << '}';
 
     std::cout << std::endl;
 
-    // insert elements
+    std::cout << "unique_map: ";
+    for (auto u : unique_map) std::cout << '{' << u.first << ", " << u.second << '}';
+    std::cout << std::endl;
+
+    std::cout << std::endl;
+
+    // dodanie elementu
     long long work = 4970719754513;
 
-    multiMap.insert({ "grimm", work });
-    // will not work
-    //multiMap["grimm-jaud"]=4916012323356;
+    multi_map.insert({ "grimm", work });
 
-    uniqMap["lp"] = 4;
-    uniqMap.insert({ "sshd", 71 });
+    // Tylko metoda insert zadzia³a
+    //multi_map["grimm-jaud"]=4916012323356;
+
+    unique_map["lp"] = 4;
+    unique_map.insert({ "sshd", 71 });
 
     std::map<std::string, int> myMap{ {"ftp", 40}, {"rainer", 999} };
-    uniqMap.insert(myMap.begin(), myMap.end());
+    unique_map.insert(myMap.begin(), myMap.end());
 
-    // show the unordered maps
-    std::cout << "multiMap: ";
-    for (auto m : multiMap) std::cout << '{' << m.first << ", " << m.second << '}';
+    // Wyœwietlenie multi mapy
+    std::cout << "multi_map: ";
+    for (auto m : multi_map) std::cout << '{' << m.first << ", " << m.second << '}';
+
+    std::cout << std::endl;
+
+    std::cout << "unique_map: ";
+    for (auto u : unique_map) std::cout << '{' << u.first << ", " << u.second << '}';
+    std::cout << std::endl;
+
 
     std::cout << std::endl;
 
-    std::cout << "uniqMap: ";
-    for (auto u : uniqMap) std::cout << '{' << u.first << ", " << u.second << '}';
-    std::cout << std::endl;
-
-
-    std::cout << std::endl;
-    // search for elements
-
-    // only grimm
-    auto iter = multiMap.equal_range("grimm");
+    // Szukanie elementu
+    auto iter = multi_map.equal_range("grimm");
     std::cout << "grimm: ";
     for (auto itVal = iter.first; itVal != iter.second; ++itVal) {
         std::cout << itVal->second << " ";
@@ -61,34 +61,34 @@ int main() {
 
     std::cout << std::endl;
 
-    std::cout << "multiMap.count(grimm): " << multiMap.count("grimm") << std::endl;
+    std::cout << "multi_map.count(grimm): " << multi_map.count("grimm") << std::endl;
 
-    auto it = uniqMap.find("root");
-    if (it != uniqMap.end()) {
-        std::cout << "uniqMap.find(root): " << it->second << std::endl;
-        std::cout << "uniqMap[root]: " << uniqMap["root"] << std::endl;
+    auto it = unique_map.find("root");
+    if (it != unique_map.end()) {
+        std::cout << "unique_map.find(root): " << it->second << std::endl;
+        std::cout << "unique_map[root]: " << unique_map["root"] << std::endl;
     }
 
-    // will create a new entry
-    std::cout << "uniqMap[notAvailable]: " << uniqMap["notAvailable"] << std::endl;
+    // Sprawdzenie, czy element jest w mapie
+    std::cout << "unique_map[notAvailable]: " << unique_map["notAvailable"] << std::endl;
 
     std::cout << std::endl;
 
-    // remove
-    int numMulti = multiMap.erase("grimm");
-    int numUniq = uniqMap.erase("rainer");
+    // Usuniêcie wybranego klucza
+    int numMulti = multi_map.erase("grimm");
+    int numUniq = unique_map.erase("rainer");
 
-    std::cout << "Erased " << numMulti << " times grimm from multiMap." << std::endl;
-    std::cout << "Erased " << numUniq << " times rainer from uniqMap." << std::endl;
+    std::cout << "Erased " << numMulti << " times grimm from multi_map." << std::endl;
+    std::cout << "Erased " << numUniq << " times rainer from unique_map." << std::endl;
 
-    // all
-    multiMap.clear();
-    uniqMap.clear();
+    // Usuniêcie wszystkiego
+    multi_map.clear();
+    unique_map.clear();
 
     std::cout << std::endl;
 
-    std::cout << "multiMap.size(): " << multiMap.size() << std::endl;
-    std::cout << "uniqMap.size(): " << uniqMap.size() << std::endl;
+    std::cout << "multi_map.size(): " << multi_map.size() << std::endl;
+    std::cout << "unique_map.size(): " << unique_map.size() << std::endl;
 
     std::cout << std::endl;
 
