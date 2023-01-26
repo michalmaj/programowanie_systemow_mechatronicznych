@@ -17,7 +17,8 @@ int main() {
     int sum = 0;
     std::for_each(arr.begin(), arr.end(), 
         [&sum](int value) { sum += value; });
-    std::cout << "sum of array{1,2,3,4,5,6,7,8}: " << sum << std::endl;
+    std::cout << "sum of array{1,2,3,4,5,6,7,8}: " <<
+        sum << std::endl;
 
     // Podnosi ka¿d¹ wartoœæ w kontenerze do drugiej potêgi
     std::for_each(arr.begin(), arr.end(), 
